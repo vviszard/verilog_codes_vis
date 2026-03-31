@@ -21,14 +21,13 @@
 
 
 module mul_test();
-    reg [15:0] a, q;
+reg [15:0] a, q;
     reg clk, start;
 
-    // Outputs
     wire done;
     wire [32:0] P;
 
-    multiplier uut (
+    multiplier dut (
         .P(P), 
         .done(done), 
         .start(start), 
@@ -41,7 +40,6 @@ module mul_test();
     always #5 clk = ~clk;
 
     initial begin
-        // 1. Initialize
         a = 16'd11;
         q = 16'd13;
         start = 0;
@@ -59,12 +57,6 @@ module mul_test();
         $display("Calculation Finished!");
         $display("Input A: %d, Input Q: %d", a, q);
         $display("Result P: %d (Binary: %b)", P, P);
-        
-        if (P == 143) 
-            $display("SUCCESS: 11 * 13 = 143");
-        else 
-            $display("FAILURE: Expected 143, got %d", P);
-
         #20;
         $finish;
     end

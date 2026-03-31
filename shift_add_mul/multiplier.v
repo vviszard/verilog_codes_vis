@@ -28,15 +28,16 @@ module multiplier(P,done,start,a,q,clk);
 
     reg [15:0] M;
     reg [32:0] R;
-    integer n;
+    reg [4:0] n;
 
     always @(posedge clk)
         if (start)
         begin
+            P <= 32'b0;
             M <= a;
             R[15:0] <= q;
             R[31:16] <= 16'b0;
-            n <= 16;
+            n <= 5'd16;
             done <= 1'b0;
         end   
   
